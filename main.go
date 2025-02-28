@@ -48,4 +48,14 @@ func main() {
 	} else {
 		fmt.Printf("%+v\n", config)
 	}
+
+	b, err := json.MarshalIndent(config, "", "  ")
+	if err != nil {
+		fmt.Println("error: ", err)
+	} else {
+		err := os.WriteFile("config2.json", b, 0644)
+		if err != nil {
+			fmt.Println("error: ", err)
+		}
+	}
 }

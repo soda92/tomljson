@@ -8,7 +8,7 @@ type v2struct struct {
 }
 
 type v2Log struct {
-	LogLevel string `json:"logLevel"`
+	LogLevel string `json:"loglevel"`
 }
 
 type v2Inbound struct {
