@@ -38,8 +38,12 @@ type v2WSSettings struct {
 }
 
 type v2Outbound struct {
-	Tag      string `json:"tag"`
-	Protocol string `json:"protocol"`
+	Tag      string             `json:"tag"`
+	Protocol string             `json:"protocol"`
+	Settings v2OutboundSettings `json:"settings"`
+}
+
+type v2OutboundSettings struct {
 }
 
 type v2Routing struct {

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"os"
 
 	"github.com/pelletier/go-toml/v2"
 
@@ -39,23 +37,6 @@ func main() {
 		testToml()
 	}
 
-	data, _ := os.ReadFile("config.json")
-
-	var config v2struct
-	err := json.Unmarshal(data, &config)
-	if err != nil {
-		fmt.Println("error: ", err)
-	} else {
-		fmt.Printf("%+v\n", config)
-	}
-
-	b, err := json.MarshalIndent(config, "", "  ")
-	if err != nil {
-		fmt.Println("error: ", err)
-	} else {
-		err := os.WriteFile("config2.json", b, 0644)
-		if err != nil {
-			fmt.Println("error: ", err)
-		}
-	}
+	config := MustParseJson("config.json")
+	MustSaveJson(config, "config2.json")
 }
