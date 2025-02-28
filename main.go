@@ -1,29 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"github.com/pelletier/go-toml/v2"
+	"flag"
 )
 
-type MyConfig struct {
-	Version int
-	Name    string
-	Tags    []string
-}
-
 func main() {
-	doc := `
-version = 2
-name = "go-toml"
-tags = ["go", "toml"]
-`
-
-	var cfg MyConfig
-	err := toml.Unmarshal([]byte(doc), &cfg)
-	if err != nil {
-		panic(err)
+	testtoml := flag.Bool("testtoml", false, "test toml parse")
+	flag.Parse()
+	if *testtoml {
+		testToml()
 	}
-	fmt.Println("version:", cfg.Version)
-	fmt.Println("name:", cfg.Name)
-	fmt.Println("tags:", cfg.Tags)
+
+	config := MustParseJson("config.json")
+	MustSaveJson(config, "config2.json")
+	MustSaveToml(config, "config.toml")
 }
