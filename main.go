@@ -1,7 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
+
 	"github.com/pelletier/go-toml/v2"
 
 	"flag"
@@ -34,5 +37,15 @@ func main() {
 	testtoml := flag.Bool("testtoml", false, "test toml parse")
 	if *testtoml {
 		testToml()
+	}
+
+	data, _ := os.ReadFile("config.json")
+
+	var config v2struct
+	err := json.Unmarshal(data, &config)
+	if err != nil {
+		fmt.Println("error: ", err)
+	} else {
+		fmt.Printf("%+v\n", config)
 	}
 }

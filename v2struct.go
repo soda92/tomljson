@@ -1,53 +1,54 @@
 package main
 
 type v2struct struct {
-	log       v2Log
-	inbounds  []v2Inbound
-	outBounds []v2Outbound
+	Log       v2Log        `json:"log"`
+	Inbounds  []v2Inbound  `json:"inbounds"`
+	OutBounds []v2Outbound `json:"outbounds"`
+	Routing   v2Routing    `json:"routing"`
 }
 
 type v2Log struct {
-	logLevel string
+	LogLevel string `json:"logLevel"`
 }
 
 type v2Inbound struct {
-	listen         string
-	port           int
-	protocol       string
-	settings       v2Settings
-	streamSettings v2StreamSettings
+	Listen         string           `json:"listen"`
+	Port           int              `json:"port"`
+	Protocol       string           `json:"protocol"`
+	Settings       v2Settings       `json:"settings"`
+	StreamSettings v2StreamSettings `json:"streamSettings"`
 }
 
 type v2Settings struct {
-	clients    []v2Clients
-	decryption string
+	Clients    []v2Clients `json:"clients"`
+	Decryption string      `json:"decryption"`
 }
 
 type v2Clients struct {
-	id string
+	Id string `json:"id"`
 }
 
 type v2StreamSettings struct {
-	network    string
-	wsSettings v2WSSettings
+	Network   string       `json:"network"`
+	WSettings v2WSSettings `json:"wsSettings"`
 }
 
 type v2WSSettings struct {
-	path string
+	Path string `json:"path"`
 }
 
 type v2Outbound struct {
-	tag      string
-	protocol string
+	Tag      string `json:"tag"`
+	Protocol string `json:"protocol"`
 }
 
 type v2Routing struct {
-	domainStrategy string
-	roles          []v2Rules
+	DomainStrategy string    `json:"domainStrategy"`
+	Rules          []v2Rules `json:"rules"`
 }
 
 type v2Rules struct {
-	_type       string
-	ip          []string
-	outboundTag string
+	Type        string   `json:"type"`
+	Ip          []string `json:"ip"`
+	OutboundTag string   `json:"outboundTag"`
 }
