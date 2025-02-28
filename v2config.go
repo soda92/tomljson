@@ -1,6 +1,6 @@
 package main
 
-type v2struct struct {
+type v2config struct {
 	Log       v2Log        `json:"log"`
 	Inbounds  []v2Inbound  `json:"inbounds"`
 	OutBounds []v2Outbound `json:"outbounds"`

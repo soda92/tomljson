@@ -5,10 +5,10 @@ import (
 	"os"
 )
 
-func MustParseJson(file string) v2struct {
+func MustParseJson(file string) v2config {
 	data, _ := os.ReadFile(file)
 
-	var config v2struct
+	var config v2config
 	err := json.Unmarshal(data, &config)
 	if err != nil {
 		panic(err)
@@ -16,7 +16,7 @@ func MustParseJson(file string) v2struct {
 	return config
 }
 
-func MustSaveJson(config v2struct, file string) {
+func MustSaveJson(config v2config, file string) {
 	b, err := json.MarshalIndent(config, "", "  ")
 	if err != nil {
 		panic(err)
